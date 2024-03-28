@@ -11,9 +11,9 @@ const {cpp} = require("@codemirror/lang-cpp");
 const {indentWithTab} = require("@codemirror/commands");
 const termToHtml = require('term-to-html')
 const random = require('lib0/random')
-const {WebsocketProvider} = require("y-websocket-socketio");
+const {WebtransportProvider} = require("y-webtransport");
 
-const WEBSOCKET_SERVER_URL = 'http://127.0.0.1:3000';
+const WEBTRANSPORT_SERVER_URL = 'https://127.0.0.1:3000';
 const DEFAULT_ROOM = 'welcome-room'
 const DEFAULT_USERNAME = 'Anonymous ' + Math.floor(Math.random() * 100)
 const roomStatus = document.getElementById("room-status")
@@ -162,7 +162,7 @@ const enterRoom = ({roomName, username}, newDoc = true) => {
   if (newDoc) {
     ydoc = new yjs.Doc()
   }
-  provider = new WebsocketProvider(WEBSOCKET_SERVER_URL, roomName, ydoc, {
+  provider = new WebtransportProvider(WEBTRANSPORT_SERVER_URL, roomName, ydoc, {
     filterBcConns: false
   })
   currentID = ydoc.clientID;

@@ -1,0 +1,516 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"co",
+				"console"
+			],
+			[
+				"We",
+				"WebSocket"
+			],
+			[
+				"ws",
+				"wsconnected"
+			],
+			[
+				"bc",
+				"bcconnected"
+			],
+			[
+				"dis",
+				"disconnect"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"di",
+				"disconnect"
+			],
+			[
+				"sock",
+				"socket"
+			],
+			[
+				"so",
+				"socket"
+			],
+			[
+				"se",
+				"serverUrl"
+			],
+			[
+				"conne",
+				"Connect"
+			],
+			[
+				"i",
+				"inv_ip"
+			],
+			[
+				"in",
+				"inv_initperm"
+			],
+			[
+				"p",
+				"permute"
+			],
+			[
+				"ex",
+				"expandperm"
+			],
+			[
+				"d",
+				"d0"
+			],
+			[
+				"pc",
+				"pc1_c0"
+			],
+			[
+				"R",
+				"Rcon"
+			],
+			[
+				"pe",
+				"permute"
+			],
+			[
+				"s",
+				"sbox"
+			],
+			[
+				"b",
+				"b_arr"
+			],
+			[
+				"m",
+				"mult"
+			],
+			[
+				"mul",
+				"multby2"
+			],
+			[
+				"repea",
+				"repeated_xor"
+			],
+			[
+				"hto",
+				"htobin"
+			],
+			[
+				"l",
+				"lshift"
+			],
+			[
+				"en",
+				"end_x"
+			],
+			[
+				"po",
+				"pos_b"
+			],
+			[
+				"cur",
+				"curheight"
+			],
+			[
+				"mas",
+				"maskONE"
+			],
+			[
+				"cs",
+				"csrf_exempt"
+			],
+			[
+				"in_",
+				"in_f"
+			],
+			[
+				"o",
+				"out_ext"
+			],
+			[
+				"tit",
+				"title_uri"
+			],
+			[
+				"titl",
+				"title_uri"
+			],
+			[
+				"sor",
+				"sortOrder"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"all",
+				"allowed_sort_order"
+			],
+			[
+				"mo",
+				"movie_poster"
+			],
+			[
+				"movi",
+				"movie_poster"
+			],
+			[
+				"get",
+				"getMoviePoster"
+			],
+			[
+				"mov",
+				"movieItem"
+			],
+			[
+				"re",
+				"requests"
+			],
+			[
+				"req",
+				"requests"
+			],
+			[
+				"asyn",
+				"async"
+			],
+			[
+				"get_",
+				"get_image_url"
+			],
+			[
+				"file",
+				"file_length"
+			],
+			[
+				"lin",
+				"lines"
+			],
+			[
+				"log",
+				"log_file"
+			],
+			[
+				"li",
+				"line"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Install Package Control"
+			],
+			[
+				"set",
+				"Set Syntax: JSX"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/fssd/Documents/TA/y-webtransport"
+	],
+	"file_history":
+	[
+		"/home/fssd/Documents/TA/peertocp/renderer/index.js",
+		"/home/fssd/Documents/TA/pg/peertocp/package.json",
+		"/home/fssd/Documents/TA/peertocp/node_modules/y-websocket-socketio/package.json",
+		"/home/fssd/Documents/TA/peertocp/main.js",
+		"/home/fssd/Documents/TA/peertocp/package.json",
+		"/home/fssd/Documents/_/scroll_mobile.py",
+		"/home/fssd/Documents/notes.txt",
+		"/home/fssd/Documents/TA/pg/peertocp/main.js",
+		"/home/fssd/Documents/TA/webtransport-sample-project/open_browser.sh",
+		"/home/fssd/Documents/TA/webtransport-sample-project/index.html",
+		"/home/fssd/Documents/TA/webtransport-sample-project/index.js",
+		"/home/fssd/Documents/TA/-1711519263734.log",
+		"/home/fssd/Documents/TA/script.sh",
+		"/home/fssd/Documents/kuliah/Kowan/deploy-takis.sh",
+		"/home/fssd/Documents/TA/y-websocket/bin/utils-socketio.js",
+		"/home/fssd/Documents/TA/y-websocket/bin/utils.js",
+		"/home/fssd/Documents/TA/y-websocket/bin/server-socketio.js",
+		"/home/fssd/Documents/TA/y-websocket/bin/server.mjs",
+		"/home/fssd/Documents/TA/y-websocket/dist/y-websocket-socketio.cjs",
+		"/home/fssd/Documents/TA/peertocp/node_modules/y-websocket/dist/y-websocket.cjs",
+		"/home/fssd/Documents/TA/peertocp/provider/y-webtransport.js",
+		"/home/fssd/Documents/TA/peertocp/node_modules/y-websocket/src/y-websocket.js",
+		"/home/fssd/Documents/TA/y-websocket/src/y-websocket.js",
+		"/home/fssd/Documents/y-websocket/dist/y-websocket.cjs.map",
+		"/home/fssd/Documents/TA/electron-sockets-master/preload.js",
+		"/home/fssd/Documents/TA/webtransport-sample-project/package.json",
+		"/home/fssd/Documents/TA/y-websocket/package.json",
+		"/home/fssd/Documents/TA/peertocp/renderer/terminal.js",
+		"/home/fssd/Documents/TA/webtransport-sample-project/index2.js",
+		"/home/fssd/Documents/TA/webtransport-sample-project/open_browser2.sh",
+		"/home/fssd/Documents/TA/y-websocket/bin/server.js",
+		"/home/fssd/Documents/TA/y-websocket/node_modules/@fails-components/webtransport/lib/index.node.js",
+		"/home/fssd/Documents/TA/y-websocket/node_modules/@fails-components/webtransport/dist/lib/index.node.d.ts",
+		"/home/fssd/Documents/TA/y-websocket/bin/utils2.js",
+		"/home/fssd/Documents/TA/y-websocket/bin/server2.js",
+		"/home/fssd/Documents/TA/peertocp/node_modules/y-websocket/dist/y-websocket1.cjs",
+		"/home/fssd/Documents/TA/webtransport-sample-project/utils.js",
+		"/home/fssd/Documents/TA/y-websocket/bin/server_.js",
+		"/home/fssd/Documents/TA/y-websocket/bin/server1.js",
+		"/home/fssd/Documents/TA/peertocp/renderer/index.html",
+		"/home/fssd/Documents/TA/electron-sockets-master/sockets/index.js",
+		"/home/fssd/Documents/TA/webtransport-sample-project/index2.html",
+		"/home/fssd/Documents/TA/electron-sockets-master/package.json",
+		"/home/fssd/Documents/TA/webtransport-sample-project/open_browser (copy 1).sh",
+		"/home/fssd/Documents/_/vigenere.py",
+		"/home/fssd/Documents/_/expandkey.py",
+		"/home/fssd/Documents/_/ipdes.py",
+		"/home/fssd/Documents/_/mixcolumn2.py",
+		"/home/fssd/Documents/_/mult.py",
+		"/home/fssd/Documents/_/mixcolumn.py",
+		"/home/fssd/Documents/TA/y-websocket/bin/serverwt.mjs",
+		"/home/fssd/Documents/_/scroll.py",
+		"/home/fssd/Documents/TA/y-websocket/bin/serverwt.js",
+		"/home/fssd/Documents/_/cookies.json",
+		"/home/fssd/Documents/_/cryptohack/100_encoding.py",
+		"/home/fssd/Documents/_/cryptohack/hex.py",
+		"/home/fssd/Videos/Penguins.Of.Madagascar.2014.All.Blu-Ray.BDRip.720p.1080p.srt",
+		"/home/fssd/.mysql/workbench/log/wb.log",
+		"/home/fssd/Documents/TA/y-webtransport/src/y-webtransport.js",
+		"/home/fssd/Downloads/S1877050915020608(1).bib",
+		"/home/fssd/Downloads/S1877050915020608.bib",
+		"/home/fssd/Documents/Kowan/php-apache.yaml",
+		"/home/fssd/Documents/Fortal/steg-ind/test.py",
+		"/home/fssd/Documents/Fortal/steg-ind/t.txt",
+		"/home/fssd/Documents/Fortal/LSB-Steganography/LSBSteg.py",
+		"/home/fssd/Documents/Fortal/steg-ind/LSBSteg2.py",
+		"/home/fssd/Documents/Fortal/steg-ind/cracked.txt",
+		"/home/fssd/Documents/Kowan/files/entrypoint.sh",
+		"/home/fssd/Documents/Kowan/files/Dockerfile",
+		"/home/fssd/Documents/Kowan/deploy-takis.sh",
+		"/home/fssd/Documents/Fortal/windowsvm/realunix_AX512XLPLUS_QTT8.210427.001.20221221_VER.55/2. HOW_TO_FLASH_REALUNIXPLUS_AX-512.txt",
+		"/home/fssd/Downloads/S1877050915020608.txt",
+		"/home/fssd/.cache/.fr-LKH8Nl/pass.txt",
+		"/home/fssd/Documents/Fortal/(View Only) Stegano Files/crack.sh",
+		"/home/fssd/Documents/Fortal/(View Only) Stegano Files/t.txt",
+		"/home/fssd/Documents/Fortal/steg-ind/h",
+		"/home/fssd/Documents/Fortal/(View Only) Stegano Files/h",
+		"/home/fssd/Documents/Fortal/steg-ind/gambar4-vincent-secret-secret.txt",
+		"/home/fssd/Documents/Fortal/steg-ind/hey.txt",
+		"/home/fssd/Documents/Fortal/steg-ind/LSBSteg.py",
+		"/home/fssd/Documents/Fortal/steg-ind/o",
+		"/home/fssd/Documents/Fortal/LSB-Steganography/pesan.txt",
+		"/home/fssd/Documents/SemWeb/ws4-shape3-11.ttl.",
+		"/home/fssd/Documents/SemWeb/ws4-shape3-10.ttl.",
+		"/home/fssd/Documents/SemWeb/ws4-shape3-9.ttl",
+		"/home/fssd/Documents/SemWeb/ws4-shape2-8.ttl",
+		"/home/fssd/Documents/SemWeb/ws4-shape2-7.ttl.",
+		"/home/fssd/Documents/SemWeb/ws4-shape2-6.ttl",
+		"/home/fssd/Documents/SemWeb/ws4-shape2-5.ttl",
+		"/home/fssd/Documents/SemWeb/ws4-shape1-4.ttl",
+		"/home/fssd/Documents/SemWeb/ws4-data1-3.ttl",
+		"/home/fssd/Documents/SemWeb/ws4-shape1-3.ttl",
+		"/home/fssd/Documents/Kowan/takis/Procfile",
+		"/home/fssd/Documents/SemWeb/test/sparql/templates/sparql.html",
+		"/home/fssd/Documents/SemWeb/test/knowledge/settings.py",
+		"/home/fssd/Documents/SemWeb/test/sparql/views.py",
+		"/home/fssd/Documents/SemWeb/test/.gitlab-ci.yml",
+		"/home/fssd/Documents/SemWeb/blazegraph/Dockerfile",
+		"/home/fssd/Documents/SemWeb/infra-filament-361106-5e0b15204dbe.json",
+		"/home/fssd/Documents/Fortal/steg-ind/out/gambar2-text.txt",
+		"/home/fssd/Documents/Fortal/steg-ind/_gambar2-al-taaj-secret.png.extracted/19EEB0",
+		"/home/fssd/Documents/Fortal/steg-ind/_gambar1-naufan-secret.png.extracted/36.zlib",
+		"/home/fssd/Documents/Fortal/steg-ind/_gambar1-naufan-secret.png.extracted/13D-0",
+		"/home/fssd/Documents/Fortal/steg-ind/out/msg.txt",
+		"/home/fssd/Documents/Fortal/steg-ind/dio_hidden-secret.txt",
+		"/home/fssd/Documents/Kowan/deploy.sh",
+		"/home/fssd/Documents/Kowan/takis/takis/settings.py",
+		"/home/fssd/Documents/Kowan/takis/Dockerfile",
+		"/home/fssd/Documents/Kowan/takis/takis/wsgi.py",
+		"/home/fssd/Documents/Kowan/takis/runtime.txt",
+		"/home/fssd/Documents/SemWeb/test/Dockerfile",
+		"/home/fssd/Documents/SemWeb/test/sparql/templates/uri.html",
+		"/home/fssd/Documents/SemWeb/test/sparql/templates/search.html",
+		"/home/fssd/Documents/SemWeb/test/infra-filament-361106-5e0b15204dbe.json",
+		"/home/fssd/Documents/Fortal/h",
+		"/home/fssd/.cache/.fr-hiCy6x/pass.txt",
+		"/home/fssd/Documents/SemWeb/ws4-1.ttl",
+		"/home/fssd/Documents/SemWeb/knowledge-disney/knowledge/settings.py",
+		"/home/fssd/Documents/SemWeb/knowledge-disney/home/urls.py",
+		"/home/fssd/Documents/SemWeb/testrdf3.py",
+		"/home/fssd/Documents/SemWeb/knowledge-disney/theme/templates/base.html",
+		"/home/fssd/Documents/SemWeb/knowledge-disney/home/templates/index.html",
+		"/home/fssd/Documents/SemWeb/testrdf2.py",
+		"/home/fssd/Documents/SemWeb/knowledge-disney/home/__init__.py",
+		"/home/fssd/Documents/SemWeb/testrdf.py",
+		"/home/fssd/Documents/SemWeb/test/vercel.json",
+		"/home/fssd/Documents/SemWeb/knowledge-disney/home/views.py",
+		"/home/fssd/Documents/SemWeb/test/knowledge/wsgi.py"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "/home/fssd/Documents/TA/y-webtransport"
+		}
+	],
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 45.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 335.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 592.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 285.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

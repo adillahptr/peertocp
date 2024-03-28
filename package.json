@@ -44,7 +44,7 @@
     "y-codemirror.next": "^0.3.2",
     "y-protocols": "^1.0.5",
     "y-websocket": "github:hockyy/y-websocket",
-    "y-websocket-socketio": "github:adillahptr/y-websocket-socketio",
+    "y-webtransport": "github:adillahptr/y-webtransport",
     "yjs": "^13.5.42",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5"
