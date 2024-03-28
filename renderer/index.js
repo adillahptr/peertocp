@@ -11,9 +11,9 @@ const {cpp} = require("@codemirror/lang-cpp");
 const {indentWithTab} = require("@codemirror/commands");
 const termToHtml = require('term-to-html')
 const random = require('lib0/random')
-const {WebsocketProvider} = require("y-websocket");
+const {WebsocketProvider} = require("y-websocket-socketio");
 
-const WEBSOCKET_SERVER_URL = 'ws://crdt-ws.hocky.id';
+const WEBSOCKET_SERVER_URL = 'http://127.0.0.1:3000';
 const DEFAULT_ROOM = 'welcome-room'
 const DEFAULT_USERNAME = 'Anonymous ' + Math.floor(Math.random() * 100)
 const roomStatus = document.getElementById("room-status")
