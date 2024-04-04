@@ -9,6 +9,7 @@ const SHELL_PREFERENCE = {
 }
 const shell = SHELL_PREFERENCE[os.platform()] || "bash"
 let mainWindow;
+const WEBTRANSPORT_HOST = "127.0.0.1:3000";
 
 /*
 Start Of Processes and Compilers Code
@@ -140,6 +141,9 @@ const createWindow = () => {
   })
   mainWindow.loadFile(path.join('renderer', 'index.html'))
 }
+
+app.commandLine.appendSwitch('ignore-certificate-errors-spki-list', 'nWTMK977rFljqm9HEfebD6+ay1zQ+S2CFRs4pMhYzPQ=');
+app.commandLine.appendSwitch('origin-to-force-quic-on', WEBTRANSPORT_HOST);
 
 app.whenReady().then(() => {
   createWindow()

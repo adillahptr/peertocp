@@ -5,16 +5,14 @@ const {ipcRenderer} = require('electron');
 const {
   receiveUpdates, sendableUpdates, collab, getSyncedVersion
 } = require("@codemirror/collab");
-//const WEBSOCKET_URL = "ws://ot-ws.hocky.id";
-const WEBSOCKET_URL = "http://127.0.0.1:3000";
-const WebSocket = require('rpc-websockets').Client
+const WEBTRANSPORT_URL = "https://127.0.0.1:3000";
 const {basicSetup} = require("codemirror");
 const {ChangeSet, EditorState} = require("@codemirror/state");
 const {EditorView, ViewPlugin, keymap} = require("@codemirror/view");
 const {cpp} = require("@codemirror/lang-cpp");
 const {indentWithTab} = require("@codemirror/commands");
 const termToHtml = require('term-to-html')
-const TIMEOUT_WSCONN = 1000;
+const TIMEOUT_WTCONN = 1000;
 const Mutex = require('async-mutex').Mutex;
 const io = require('socket.io-client');
 
@@ -33,7 +31,13 @@ class Socket {
     this.id;
     this.ready;
     this.socket = new io(url, {
-      transports: ['websocket'],
+      transportOptions: {
+        webtransport: {
+          hostname: "127.0.0.1",
+          port: "3000"
+        }
+      },
+      rejectUnauthorized: false,
       autoconnect: true, reconnectionAttempts: 0, 
       query: {
         username: userName, color: color, colorlight: colorLight,
@@ -81,7 +85,7 @@ class Connection {
      */
     this.ping = () => {
       try {
-        return this.wsconn.call("ping")
+        return this.wtconn.call("ping")
       } catch (e) {
         console.error(e)
         return new Promise(resolve => {
@@ -105,14 +109,14 @@ class Connection {
         }
       })
     }
-    this.getWsConn()
+    this.getWtConn()
   }
 
   /**
-   * getWsConn regenerate ws connection and set interval pinger function
+   * getWtConn regenerate wt connection and set interval pinger function
    */
-  getWsConn() {
-    this.wsconn = new Socket(WEBSOCKET_URL, this.userName, this.docName, this.color, this.colorLight)
+  getWtConn() {
+    this.wtconn = new Socket(WEBTRANSPORT_URL, this.userName, this.docName, this.color, this.colorLight)
     if (this.pingInterval) {
       clearInterval(this.pingInterval)
     }
@@ -127,9 +131,9 @@ class Connection {
    */
   async pushUpdates(version, updates) {
     try {
-      return this.wsconn.call("pushUpdates", {
+      return this.wtconn.call("pushUpdates", {
         docName: currentState.roomName, version: version, updates: updates
-      }, TIMEOUT_WSCONN)
+      }, TIMEOUT_WTCONN)
     } catch (e) {
       console.error(e)
       return new Promise(resolve => {
@@ -146,11 +150,11 @@ class Connection {
    */
   async pushShellUpdates(shellVersion, shellUpdates) {
     try {
-      return this.wsconn.call("pushShellUpdates", {
+      return this.wtconn.call("pushShellUpdates", {
         docName: currentState.roomName,
         shellVersion: shellVersion,
         shellUpdates: shellUpdates
-      }, TIMEOUT_WSCONN)
+      }, TIMEOUT_WTCONN)
     } catch (e) {
       return new Promise(resolve => {
         resolve(false)
@@ -167,11 +171,11 @@ class Connection {
    */
   async pullUpdates(version, shellVersion) {
     try {
-      return this.wsconn.call("pullUpdates", {
+      return this.wtconn.call("pullUpdates", {
         docName: currentState.roomName,
         version: version,
         shellVersion: shellVersion
-      }, TIMEOUT_WSCONN).then((updates) => {
+      }, TIMEOUT_WTCONN).then((updates) => {
         return {
           updates: updates.updates.map(u => ({
             changes: ChangeSet.fromJSON(u.changes), clientID: u.clientID
@@ -195,7 +199,7 @@ class Connection {
    */
   async getPeers() {
     try {
-      return this.wsconn.call("getPeers", null, TIMEOUT_WSCONN)
+      return this.wtconn.call("getPeers", null, TIMEOUT_WTCONN)
     } catch (e) {
       return new Promise(resolve => {
         resolve({selfid: "", ids: []})
@@ -212,8 +216,8 @@ class Connection {
    */
   async sendToUser(to, channel, message) {
     try {
-      return this.wsconn.call("sendToPrivate",
-          {to: to, channel: channel, message: message}, TIMEOUT_WSCONN)
+      return this.wtconn.call("sendToPrivate",
+          {to: to, channel: channel, message: message}, TIMEOUT_WTCONN)
     } catch (e) {
       console.error(e)
       return new Promise(resolve => {
@@ -229,7 +233,7 @@ class Connection {
     if (this.pingInterval) {
       clearInterval(this.pingInterval)
     }
-    this.wsconn.socket.disconnect()
+    this.wtconn.socket.disconnect()
   }
 
   /**
@@ -237,7 +241,7 @@ class Connection {
    * will initilize new connection
    */
   reconnect() {
-    this.getWsConn()
+    this.getWtConn()
     this.plugin.goInit()
   }
 }
@@ -284,17 +288,17 @@ function peerExtension(startVersion = 0, connection) {
      */
     goInit() {
       this.initDone = false;
-      connection.wsconn.socket.on("newUpdates", () => {
+      connection.wtconn.socket.on("newUpdates", () => {
         this.pull();
       })
-      connection.wsconn.socket.on("newPeers", () => {
+      connection.wtconn.socket.on("newPeers", () => {
         this.updatePeers()
       })
-      connection.wsconn.socket.on("custom.message", (message) => {
+      connection.wtconn.socket.on("custom.message", (message) => {
         messageHandler(message)
       })
       this.initializeDocs()
-      connection.wsconn.socket.once("connect", () => {
+      connection.wtconn.socket.once("connect", () => {
         this.initializeDocs()
       })
       this.initializeDocs()
@@ -304,7 +308,7 @@ function peerExtension(startVersion = 0, connection) {
      * Initialization of the docs
      */
     initializeDocs() {
-      if (!connection.wsconn.ready) {
+      if (!connection.wtconn.ready) {
         return;
       }
       if (this.initDone) {
@@ -316,7 +320,7 @@ function peerExtension(startVersion = 0, connection) {
       this.push()
       this.pushShell()
       this.updatePeers()
-      currentID = connection.wsconn.id
+      currentID = connection.wtconn.id
     }
 
     /**
@@ -354,7 +358,7 @@ function peerExtension(startVersion = 0, connection) {
         await connection.pushShellUpdates(this.shellVersion, pushingCurrent);
         if (pendingShellUpdates.length) {
           this.pull().then((e) => {
-            if (e && connection.wsconn.ready) {
+            if (e && connection.wtconn.ready) {
               setTimeout(() => {
                 this.pushShell()
               }, 100)
@@ -386,7 +390,7 @@ function peerExtension(startVersion = 0, connection) {
         // while it was running, try again if there's updates remaining
         if (sendableUpdates(this.view.state).length) {
           this.pull().then((e) => {
-            if (e && connection.wsconn.ready) {
+            if (e && connection.wtconn.ready) {
               setTimeout(() => {
                 this.push()
               }, 100)
@@ -613,7 +617,7 @@ const updatePeersButton = (peers) => {
 }
 
 connectionButton.addEventListener('click', () => {
-  if (connection.wsconn.socket.connected) {
+  if (connection.wtconn.socket.connected) {
     connection.disconnect()
     connectionButton.textContent = 'Connect'
     connectionButton.classList.replace("btn-danger", "btn-success")
