@@ -45,7 +45,9 @@
     "term-to-html": "^1.2.0",
     "xterm": "^4.19.0",
     "y-codemirror.next": "^0.3.2",
-    "yjs": "^13.5.42"
+    "yjs": "^13.5.42",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5"
   },
   "config": {
     "forge": {

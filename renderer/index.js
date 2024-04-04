@@ -5,8 +5,8 @@ const {ipcRenderer} = require('electron');
 const {
   receiveUpdates, sendableUpdates, collab, getSyncedVersion
 } = require("@codemirror/collab");
-const WEBSOCKET_URL = "ws://ot-ws.hocky.id";
-// const WEBSOCKET_URL = "ws://localhost:3000";
+//const WEBSOCKET_URL = "ws://ot-ws.hocky.id";
+const WEBSOCKET_URL = "http://127.0.0.1:3000";
 const WebSocket = require('rpc-websockets').Client
 const {basicSetup} = require("codemirror");
 const {ChangeSet, EditorState} = require("@codemirror/state");
@@ -16,6 +16,7 @@ const {indentWithTab} = require("@codemirror/commands");
 const termToHtml = require('term-to-html')
 const TIMEOUT_WSCONN = 1000;
 const Mutex = require('async-mutex').Mutex;
+const io = require('socket.io-client');
 
 const {
   performance
@@ -26,6 +27,44 @@ let connection;
 let runShells;
 let runnerShells;
 let pendingShellUpdates;
+
+class Socket {
+  constructor(url, userName, docName, color, colorLight) {
+    this.id;
+    this.ready;
+    this.socket = new io(url, {
+      transports: ['websocket'],
+      autoconnect: true, reconnectionAttempts: 0, 
+      query: {
+        username: userName, color: color, colorlight: colorLight,
+        docName: docName
+      },
+    });
+
+    this.socket.on('connect', () => {
+      this.id = this.socket.id
+      this.ready = true
+    })
+
+    this.socket.on('disconnect', () => {
+      this.ready = false
+      console.log("disconnect")
+    })
+  }
+
+  call = async (method, args={}, timeout) => {
+    return new Promise((resolve, reject) => {
+      this.socket.timeout(timeout).emit(method, args, (error, response) => {
+        if (error) {
+          resolve(false)
+        } else {
+          resolve(response)
+        }
+      })
+    })
+  }
+
+}
 
 /**
  * Connection is a class representing a connection to a server
@@ -73,11 +112,7 @@ class Connection {
    * getWsConn regenerate ws connection and set interval pinger function
    */
   getWsConn() {
-    this.wsconn = new WebSocket(`${WEBSOCKET_URL}/${this.docName}`, {
-      autoconnect: true, max_reconnects: 0, headers: {
-        username: this.userName, color: this.color, colorlight: this.colorLight
-      }
-    });
+    this.wsconn = new Socket(WEBSOCKET_URL, this.userName, this.docName, this.color, this.colorLight)
     if (this.pingInterval) {
       clearInterval(this.pingInterval)
     }
@@ -194,7 +229,7 @@ class Connection {
     if (this.pingInterval) {
       clearInterval(this.pingInterval)
     }
-    this.wsconn.close()
+    this.wsconn.socket.disconnect()
   }
 
   /**
@@ -249,17 +284,17 @@ function peerExtension(startVersion = 0, connection) {
      */
     goInit() {
       this.initDone = false;
-      connection.wsconn.on("newUpdates", () => {
+      connection.wsconn.socket.on("newUpdates", () => {
         this.pull();
       })
-      connection.wsconn.on("newPeers", () => {
+      connection.wsconn.socket.on("newPeers", () => {
         this.updatePeers()
       })
-      connection.wsconn.on("custom.message", (message) => {
+      connection.wsconn.socket.on("custom.message", (message) => {
         messageHandler(message)
       })
       this.initializeDocs()
-      connection.wsconn.once("open", () => {
+      connection.wsconn.socket.once("connect", () => {
         this.initializeDocs()
       })
       this.initializeDocs()
@@ -578,7 +613,7 @@ const updatePeersButton = (peers) => {
 }
 
 connectionButton.addEventListener('click', () => {
-  if (connection.wsconn.socket) {
+  if (connection.wsconn.socket.connected) {
     connection.disconnect()
     connectionButton.textContent = 'Connect'
     connectionButton.classList.replace("btn-danger", "btn-success")
