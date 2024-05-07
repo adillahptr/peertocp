@@ -59,7 +59,6 @@ class Socket {
   call = async (method, args={}, timeout) => {
     return new Promise((resolve, reject) => {
       this.socket.timeout(timeout).emit(method, args, (error, response) => {
-        console.log(method, error, response)
         if (!response) {
           resolve(false)
         } else {
