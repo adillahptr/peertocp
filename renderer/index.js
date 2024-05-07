@@ -79,7 +79,7 @@ class Connection {
      */
     this.ping = () => {
       try {
-        return this.wsconn.call("ping")
+        return this.wsconn.call("ping", {}, TIMEOUT_WSCONN)
       } catch (e) {
         console.error(e)
         return new Promise(resolve => {
