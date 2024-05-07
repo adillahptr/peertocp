@@ -59,7 +59,8 @@ class Socket {
   call = async (method, args={}, timeout) => {
     return new Promise((resolve, reject) => {
       this.socket.timeout(timeout).emit(method, args, (error, response) => {
-        if (error) {
+        console.log(method, error, response)
+        if (!response) {
           resolve(false)
         } else {
           resolve(response)
@@ -85,7 +86,7 @@ class Connection {
      */
     this.ping = () => {
       try {
-        return this.wtconn.call("ping")
+        return this.wtconn.call("ping", {}, TIMEOUT_WTCONN)
       } catch (e) {
         console.error(e)
         return new Promise(resolve => {
@@ -678,6 +679,7 @@ const messageHandler = (message) => {
       appendCompileHandler(message.message)
       break
     case "compile.request":
+      console.log("compile request")
       const code = (codemirrorView.state.doc.toString())
       ipcRenderer.send('compile.request', message.source, code)
       break
