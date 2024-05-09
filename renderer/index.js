@@ -13,8 +13,8 @@ const termToHtml = require('term-to-html')
 const random = require('lib0/random')
 const {WebsocketProvider} = require("y-websocket-socketio");
 
-const WEBSOCKET_SERVER_URL = 'http://127.0.0.1:3000';
-// const WEBSOCKET_SERVER_URL = 'https://crdt-ws-server-yqvnurhpfq-as.a.run.app';
+// const WEBSOCKET_SERVER_URL = 'http://127.0.0.1:3000';
+const WEBSOCKET_SERVER_URL = 'https://crdt-ws-server-yqvnurhpfq-as.a.run.app';
 const DEFAULT_ROOM = 'welcome-room'
 const DEFAULT_USERNAME = 'Anonymous ' + Math.floor(Math.random() * 100)
 const roomStatus = document.getElementById("room-status")
