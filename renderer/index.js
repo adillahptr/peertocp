@@ -5,7 +5,8 @@ const {ipcRenderer} = require('electron');
 const {
   receiveUpdates, sendableUpdates, collab, getSyncedVersion
 } = require("@codemirror/collab");
-const WEBSOCKET_URL = "http://127.0.0.1:3000";
+// const WEBSOCKET_URL = "http://127.0.0.1:3000";
+const WEBSOCKET_URL = "https://ot-ws-server-yqvnurhpfq-as.a.run.app";
 const {basicSetup} = require("codemirror");
 const {ChangeSet, EditorState} = require("@codemirror/state");
 const {EditorView, ViewPlugin, keymap} = require("@codemirror/view");
