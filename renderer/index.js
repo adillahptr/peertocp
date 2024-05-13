@@ -5,7 +5,8 @@ const {ipcRenderer} = require('electron');
 const {
   receiveUpdates, sendableUpdates, collab, getSyncedVersion
 } = require("@codemirror/collab");
-const WEBTRANSPORT_URL = "https://127.0.0.1:3000";
+// const WEBTRANSPORT_URL = "https://127.0.0.1:3000";
+const WEBTRANSPORT_URL = "https://ot-wt.adillahptr.com:3000";
 const {basicSetup} = require("codemirror");
 const {ChangeSet, EditorState} = require("@codemirror/state");
 const {EditorView, ViewPlugin, keymap} = require("@codemirror/view");
@@ -33,7 +34,7 @@ class Socket {
     this.socket = new io(url, {
       transportOptions: {
         webtransport: {
-          hostname: "127.0.0.1",
+          hostname: "ot-wt.adillahptr.com",
           port: "3000"
         }
       },
