@@ -13,7 +13,8 @@ const termToHtml = require('term-to-html')
 const random = require('lib0/random')
 const {WebtransportProvider} = require("y-webtransport");
 
-const WEBTRANSPORT_SERVER_URL = 'https://127.0.0.1:3000';
+// const WEBTRANSPORT_SERVER_URL = 'https://127.0.0.1:3000';
+const WEBTRANSPORT_SERVER_URL = 'https://crdt-wt.adillahptr.com:3000';
 const DEFAULT_ROOM = 'welcome-room'
 const DEFAULT_USERNAME = 'Anonymous ' + Math.floor(Math.random() * 100)
 const roomStatus = document.getElementById("room-status")
