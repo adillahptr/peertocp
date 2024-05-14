@@ -14,7 +14,7 @@ const random = require('lib0/random')
 const {WebsocketProvider} = require("y-websocket-socketio");
 
 // const WEBSOCKET_SERVER_URL = 'http://127.0.0.1:3000';
-const WEBSOCKET_SERVER_URL = 'http://crdt-socketio.adillahptr.com';
+const WEBSOCKET_SERVER_URL = 'http://crdt-socketio.adillahptr.com:3000';
 const DEFAULT_ROOM = 'welcome-room'
 const DEFAULT_USERNAME = 'Anonymous ' + Math.floor(Math.random() * 100)
 const roomStatus = document.getElementById("room-status")
