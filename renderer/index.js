@@ -655,29 +655,34 @@ const checker = () => {
     log.info("Inserting test for " + currentID)
     log.info("logID is " + logID)
     const msLeft = Date.parse("2022-11-04T14:00:00.000+07:00") - Date.now()
-    // setTimeout(scenarioOne, msLeft)
-    // setTimeout(() => {
-    //   codemirrorView.dispatch({
-    //     changes: {
-    //       from: 0,
-    //       to: codemirrorView.state.doc.length,
-    //       insert: scenarioTwoCode
-    //     },
-    //   })
-    // }, 3 * SECOND)
-    // setTimeout(scenarioTwo, msLeft)
-    // const randomDelay = randInt(1000)
-    // setTimeout(scenarioThree, msLeft + randomDelay)
-    setTimeout(() => {
-      codemirrorView.dispatch({
-        changes: {
-          from: 0,
-          to: codemirrorView.state.doc.length,
-          insert: scenarioFourCode
-        },
-      })
-    }, 3 * SECOND)
-    setTimeout(scenarioFour, msLeft)
+    if (currentTestScenario === 1){
+      setTimeout(scenarioOne, msLeft)
+    } else if (currentTestScenario === 2) {
+      setTimeout(() => {
+        codemirrorView.dispatch({
+          changes: {
+            from: 0,
+            to: codemirrorView.state.doc.length,
+            insert: scenarioTwoCode
+          },
+        })
+      }, 3 * SECOND)
+      setTimeout(scenarioTwo, msLeft)
+    } else if (currentTestScenario === 3) {
+      const randomDelay = randInt(1000)
+      setTimeout(scenarioThree, msLeft + randomDelay)
+    } else {
+      setTimeout(() => {
+        codemirrorView.dispatch({
+          changes: {
+            from: 0,
+            to: codemirrorView.state.doc.length,
+            insert: scenarioFourCode
+          },
+        })
+      }, 3 * SECOND)
+      setTimeout(scenarioFour, msLeft)
+    }
   } else {
     setTimeout(checker, SECOND)
   }
