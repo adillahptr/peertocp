@@ -44,7 +44,8 @@
     "y-codemirror.next": "^0.3.2",
     "y-protocols": "^1.0.5",
     "y-webrtc": "github:hockyy/y-webrtc",
-    "yjs": "^13.5.42"
+    "yjs": "^13.5.42",
+    "socket.io-client": "^4.7.5"
   },
   "config": {
     "forge": {
