@@ -140,6 +140,8 @@ const createWindow = () => {
   mainWindow.loadFile(path.join('renderer', 'index.html'))
 }
 
+app.commandLine.appendSwitch('ignore-certificate-errors-spki-list', 'nWTMK977rFljqm9HEfebD6+ay1zQ+S2CFRs4pMhYzPQ=');
+
 app.whenReady().then(() => {
   createWindow()
 
