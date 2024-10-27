@@ -13,7 +13,6 @@ const {indentWithTab} = require("@codemirror/commands");
 const termToHtml = require('term-to-html')
 const random = require('lib0/random')
 
-// const SIGNALLING_SERVER_URL = 'ws://crdt-p2p.hocky.id';
 const SIGNALLING_SERVER_URL = 'https://127.0.0.1:3000';
 const DEFAULT_ROOM = 'welcome-room'
 const DEFAULT_USERNAME = 'Anonymous ' + Math.floor(Math.random() * 100)
