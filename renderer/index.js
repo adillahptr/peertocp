@@ -27,18 +27,19 @@ let runnerShells;
 let pendingShellUpdates;
 
 class Socket {
-  constructor(url, userName, docName, color, colorLight) {
+  constructor(url, host, port, userName, docName, color, colorLight) {
     this.id;
     this.ready;
     this.socket = new io(url, {
       transportOptions: {
         webtransport: {
-          hostname: "ot-wt.adillahptr.com",
-          port: "3000"
+          hostname: host,
+          port: port
         }
       },
       rejectUnauthorized: false,
-      autoconnect: true, reconnectionAttempts: 0, 
+      autoconnect: true, 
+      reconnectionAttempts: 0, 
       query: {
         username: userName, color: color, colorlight: colorLight,
         docName: docName
@@ -52,7 +53,6 @@ class Socket {
 
     this.socket.on('disconnect', () => {
       this.ready = false
-      console.log("disconnect")
     })
   }
 
@@ -116,7 +116,11 @@ class Connection {
    * getWtConn regenerate wt connection and set interval pinger function
    */
   getWtConn() {
-    this.wtconn = new Socket(WEBTRANSPORT_URL, this.userName, this.docName, this.color, this.colorLight)
+    const serverUrl = new URL(WEBTRANSPORT_URL)
+    const serverHost = serverUrl.hostname
+    const serverPort = serverUrl.port
+    console.log(WEBTRANSPORT_URL, serverHost, serverPort)
+    this.wtconn = new Socket(WEBTRANSPORT_URL, serverHost, serverPort, this.userName, this.docName, this.color, this.colorLight)
     if (this.pingInterval) {
       clearInterval(this.pingInterval)
     }
