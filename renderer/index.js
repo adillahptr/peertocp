@@ -2,7 +2,7 @@
 
 const {ipcRenderer} = require('electron');
 const yjs = require("yjs");
-const {WebrtcProvider} = require("y-webrtc");
+const {WebrtcProvider} = require("y-webrtc-socketio");
 const {yCollab, yUndoManagerKeymap} = require('y-codemirror.next');
 
 const {basicSetup, EditorView} = require("codemirror");
