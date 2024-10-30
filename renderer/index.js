@@ -646,8 +646,8 @@ const scenarioFour = () => {
   }, testDuration)
 }
 
-const testPlugins = null;
-const currentTestScenario = null;
+const testPlugins = scenarioOnePlugins;
+const currentTestScenario = 1;
 const logID = uuidv4()
 
 const checker = () => {
@@ -655,7 +655,7 @@ const checker = () => {
     log.transports.file.resolvePath = () => `out/${logID}.log`
     log.info("Inserting test for " + currentID)
     log.info("logID is " + logID)
-    const msLeft = Date.parse("2022-11-04T14:00:00.000+07:00") - Date.now()
+    const msLeft = Date.parse("2024-10-30T22:09:20.000+07:00") - Date.now()
     if (currentTestScenario === 1){
       setTimeout(scenarioOne, msLeft)
     } else if (currentTestScenario === 2) {
@@ -689,7 +689,7 @@ const checker = () => {
   }
 }
 
-// checker()
+checker()
 
 window.addEventListener('load', () => {
   enterRoom(getEnterState())
