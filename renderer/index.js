@@ -30,7 +30,8 @@ class Socket {
   constructor(url, host, port, userName, docName, color, colorLight) {
     this.id;
     this.ready;
-    this.socket = new io(url, {
+    this.socket = io(url, {
+      transports: ['webtransport'],
       transportOptions: {
         webtransport: {
           hostname: host,
@@ -38,8 +39,6 @@ class Socket {
         }
       },
       rejectUnauthorized: false,
-      autoconnect: true, 
-      reconnectionAttempts: 0, 
       query: {
         username: userName, color: color, colorlight: colorLight,
         docName: docName
@@ -119,7 +118,6 @@ class Connection {
     const serverUrl = new URL(WEBTRANSPORT_URL)
     const serverHost = serverUrl.hostname
     const serverPort = serverUrl.port
-    console.log(WEBTRANSPORT_URL, serverHost, serverPort)
     this.wtconn = new Socket(WEBTRANSPORT_URL, serverHost, serverPort, this.userName, this.docName, this.color, this.colorLight)
     if (this.pingInterval) {
       clearInterval(this.pingInterval)
