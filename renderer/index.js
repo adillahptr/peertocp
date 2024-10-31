@@ -31,13 +31,13 @@ class Socket {
     this.id;
     this.ready;
     this.socket = io(url, {
-      transports: ['webtransport'],
       transportOptions: {
         webtransport: {
           hostname: host,
           port: port
         }
       },
+      autoconnect: true, reconnectionAttempts: 0,
       rejectUnauthorized: false,
       query: {
         username: userName, color: color, colorlight: colorLight,
