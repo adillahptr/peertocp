@@ -32,7 +32,8 @@ class Socket {
     this.ready;
     this.socket = new io(url, {
       transports: ['websocket'],
-      autoconnect: true, reconnectionAttempts: 0, 
+      reconnectionAttempts: 0, 
+      reconnection: false,
       query: {
         username: userName, color: color, colorlight: colorLight,
         docName: docName
@@ -53,9 +54,12 @@ class Socket {
 
   call = async (method, args={}, timeout) => {
     return new Promise((resolve, reject) => {
-      this.socket.timeout(timeout).emit(method, args, (error, response) => {
+      if (!this.socket.connected) {
+        reject(new Error("Socket not connected"))
+      }
+      this.socket.timeout(TIMEOUT_WSCONN).emit(method, args, (error, response) => {
         if (error) {
-          resolve(false)
+          reject(error)
         } else {
           resolve(response)
         }
@@ -303,7 +307,7 @@ function peerExtension(startVersion = 0, connection) {
      * Initialization of the docs
      */
     initializeDocs() {
-      if (!connection.wsconn.ready) {
+      if (!connection.wsconn.socket.connected) {
         return;
       }
       if (this.initDone) {
@@ -353,7 +357,7 @@ function peerExtension(startVersion = 0, connection) {
         await connection.pushShellUpdates(this.shellVersion, pushingCurrent);
         if (pendingShellUpdates.length) {
           this.pull().then((e) => {
-            if (e && connection.wsconn.ready) {
+            if (e && connection.wsconn.socket.connected) {
               setTimeout(() => {
                 this.pushShell()
               }, 100)
@@ -385,7 +389,7 @@ function peerExtension(startVersion = 0, connection) {
         // while it was running, try again if there's updates remaining
         if (sendableUpdates(this.view.state).length) {
           this.pull().then((e) => {
-            if (e && connection.wsconn.ready) {
+            if (e && connection.wsconn.socket.connected) {
               setTimeout(() => {
                 this.push()
               }, 100)
@@ -1052,8 +1056,8 @@ const scenarioFour = () => {
   }, testDuration)
 }
 
-const testPlugins = null;
-const currentTestScenario = null;
+const testPlugins = scenarioOnePlugins;
+const currentTestScenario = 1;
 const logID = uuidv4()
 
 const checker = () => {
@@ -1061,7 +1065,7 @@ const checker = () => {
     log.transports.file.resolvePath = () => `out/${logID}.log`
     log.info("Inserting test for " + currentID)
     log.info("logID is " + logID)
-    const msLeft = Date.parse("2022-11-04T14:00:00.000+07:00") - Date.now()
+    const msLeft = Date.parse("2024-11-01T10:15:13.000+07:00") - Date.now()
     if (currentTestScenario === 1){
       setTimeout(scenarioOne, msLeft)
     } else if (currentTestScenario === 2) {
@@ -1095,7 +1099,7 @@ const checker = () => {
   }
 }
 
-// checker()
+checker()
 
 window.addEventListener('load', () => {
   enterRoom(getEnterState())
