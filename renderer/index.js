@@ -40,15 +40,21 @@ class Socket {
       },
       rejectUnauthorized: false,
     });
+    this.oldSocket = null;
+    this.error = false;
 
     this.socket.on('connect', () => {
       this.id = this.socket.id
       this.ready = true
+      this.error = false
     })
 
-    this.socket.on('disconnect', () => {
+    this.socket.on('disconnect', (reason) => {
       this.ready = false
-      console.log("disconnect")
+      if (reason === "transport close") {
+        this.error = true
+        connection.reconnect()
+      }
     })
   }
 
@@ -108,7 +114,15 @@ class Connection {
         }
       })
     }
+
     this.getWsConn()
+
+    // setInterval(() => {
+    //   if (this.wsconn.socket.connected) {
+    //     this.disconnect()
+    //   }
+    //   this.reconnect()
+    // }, 10000)
   }
 
   /**
@@ -232,7 +246,9 @@ class Connection {
     if (this.pingInterval) {
       clearInterval(this.pingInterval)
     }
-    this.wsconn.socket.disconnect()
+    if (this.wsconn.socket.connected) {
+      this.wsconn.socket.disconnect()
+    }
   }
 
   /**
@@ -240,8 +256,12 @@ class Connection {
    * will initilize new connection
    */
   reconnect() {
-    this.getWsConn()
-    this.plugin.goInit()
+    if (this.wsconn.error) {
+      connectionButton.click()
+    } else {
+      this.getWsConn()
+      this.plugin.goInit()
+    }
   }
 }
 
@@ -626,7 +646,7 @@ connectionButton.addEventListener('click', () => {
     peersStatus.innerHTML = ""
   } else {
     const enterState = getEnterState()
-    if (enterState.roomName !== currentState.roomName) {
+    if (enterState.roomName !== currentState.roomName || connection.wsconn.error) {
       connection = null
       codemirrorView.destroy()
       enterRoom(enterState)
