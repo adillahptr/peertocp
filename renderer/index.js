@@ -37,29 +37,40 @@ class Socket {
           port: port
         }
       },
-      autoconnect: true, reconnectionAttempts: 0,
+      reconnectionAttempts: 0,
+      reconnection: false,
       rejectUnauthorized: false,
       query: {
         username: userName, color: color, colorlight: colorLight,
         docName: docName
       },
     });
+    this.error = false;
 
     this.socket.on('connect', () => {
       this.id = this.socket.id
       this.ready = true
+      this.error = false
     })
 
-    this.socket.on('disconnect', () => {
+    this.socket.on('disconnect', (reason) => {
+      console.log("disconnect", reason)
       this.ready = false
+      if (reason === "transport close") {
+        this.error = true
+        connection.reconnect()
+      }
     })
   }
 
   call = async (method, args={}, timeout) => {
     return new Promise((resolve, reject) => {
-      this.socket.timeout(timeout).emit(method, args, (error, response) => {
-        if (!response) {
-          resolve(false)
+      if (!this.socket.connected) {
+        reject(new Error("Socket not connected"))
+      }
+      this.socket.timeout(TIMEOUT_WTCONN).emit(method, args, (error, response) => {
+        if (error) {
+          reject(error)
         } else {
           resolve(response)
         }
@@ -243,8 +254,12 @@ class Connection {
    * will initilize new connection
    */
   reconnect() {
-    this.getWtConn()
-    this.plugin.goInit()
+    if (this.wtconn.error) {
+      connectionButton.click()
+    } else {
+      this.getWtConn()
+      this.plugin.goInit()
+    }
   }
 }
 
@@ -629,7 +644,7 @@ connectionButton.addEventListener('click', () => {
     peersStatus.innerHTML = ""
   } else {
     const enterState = getEnterState()
-    if (enterState.roomName !== currentState.roomName) {
+    if (enterState.roomName !== currentState.roomName || connection.wtconn.error) {
       connection = null
       codemirrorView.destroy()
       enterRoom(enterState)
