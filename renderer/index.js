@@ -667,7 +667,7 @@ const checker = () => {
             insert: scenarioTwoCode
           },
         })
-      }, 3 * SECOND)
+      }, 15 * SECOND)
       setTimeout(scenarioTwo, msLeft)
     } else if (currentTestScenario === 3) {
       const randomDelay = randInt(1000)
