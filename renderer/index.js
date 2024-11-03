@@ -61,6 +61,11 @@ class Socket {
         connection.reconnect()
       }
     })
+
+    this.socket.on('goReconnect', () => {
+      connection.disconnect()
+      connection.reconnect()
+    })
   }
 
   call = async (method, args={}, timeout) => {
