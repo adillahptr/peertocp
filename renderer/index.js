@@ -681,7 +681,7 @@ const checker = () => {
             insert: scenarioFourCode
           },
         })
-      }, 3 * SECOND)
+      }, 60 * SECOND)
       setTimeout(scenarioFour, msLeft)
     }
   } else {
