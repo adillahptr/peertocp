@@ -666,7 +666,7 @@ const checker = () => {
             insert: scenarioTwoCode
           },
         })
-      }, 3 * SECOND)
+      }, 60 * SECOND)
       setTimeout(scenarioTwo, msLeft)
     } else if (currentTestScenario === 3) {
       const randomDelay = randInt(1000)
@@ -680,7 +680,7 @@ const checker = () => {
             insert: scenarioFourCode
           },
         })
-      }, 3 * SECOND)
+      }, 60 * SECOND)
       setTimeout(scenarioFour, msLeft)
     }
   } else {
