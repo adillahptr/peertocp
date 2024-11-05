@@ -646,8 +646,8 @@ const scenarioFour = () => {
   }, testDuration)
 }
 
-const testPlugins = scenarioOnePlugins;
-const currentTestScenario = 1;
+const testPlugins = null;
+const currentTestScenario = null;
 const logID = uuidv4()
 
 const checker = () => {
@@ -667,7 +667,7 @@ const checker = () => {
             insert: scenarioTwoCode
           },
         })
-      }, 3 * SECOND)
+      }, 60 * SECOND)
       setTimeout(scenarioTwo, msLeft)
     } else if (currentTestScenario === 3) {
       const randomDelay = randInt(1000)
@@ -681,7 +681,7 @@ const checker = () => {
             insert: scenarioFourCode
           },
         })
-      }, 3 * SECOND)
+      }, 60 * SECOND)
       setTimeout(scenarioFour, msLeft)
     }
   } else {
@@ -689,7 +689,7 @@ const checker = () => {
   }
 }
 
-checker()
+// checker()
 
 window.addEventListener('load', () => {
   enterRoom(getEnterState())
